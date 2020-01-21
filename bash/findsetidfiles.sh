@@ -30,3 +30,11 @@ echo "Setgid files:"
 echo "=========="
 # 2000 is the permission of setgid.
 find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 3
+
+
+
+#display 10 largest regular files in the system, sorted by their sizes  with file name,size and owner.
+echo"10 largest files with their name, size and owner"
+echo"==============="
+find / -type f -exec ls -l --block-size=MB {} + 2>/dev/null |sort -k5 -hr | head -n 10| awk '{print $5,$3, $9}'
+echo""
