@@ -35,5 +35,8 @@ echo "Rolled $die1, $die2"
 #adding the variables
 sum=$((die1 + die2))
 echo "The sum of 2 dices rolled=$sum"
+#calculating the average
+average=$((sum/2))
+echo "The averge of 2 dice rolled=$average"
 
 ##############################################################################################################################
