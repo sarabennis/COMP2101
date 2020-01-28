@@ -23,8 +23,6 @@ range=6
 bias=1
 ################################################################################
 
-
-
 echo "Rolling..."
 # roll the dice and save the results
 die1=$((RANDOM % range + bias))
@@ -34,6 +32,7 @@ echo "Rolled $die1, $die2"
 
 ###############################################################################
 #task 2
+#adding the variables
 sum=$((die1 + die2))
 echo "The sum of 2 dices rolled=$sum"
 
