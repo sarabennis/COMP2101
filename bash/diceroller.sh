@@ -6,6 +6,10 @@
 # Task: Improve this script by making it roll as many dice as there are letters in your first name, instead of just one
 
 # roll the dice and display the result
+
+
+
+################################################################################################
 echo "rolling a pair of six sided die"
 echo "
 Rolling...
@@ -25,3 +29,4 @@ echo "
 rolling......
 $((RANDOM % 12 + 1))  Rolled
 "
+####################################################################################################
