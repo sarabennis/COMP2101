@@ -9,7 +9,7 @@
 echo "rolling a pair of six sided die"
 echo "
 Rolling...
-$(( RANDOM % 6 + 1)) rolled
+$(( RANDOM % 6 + 1)),$(( RANDOM % 6 + 1)) rolled
 "
 #################################################################################################
 echo "rolling dice 4 times since there is 4 letter in my first name"
@@ -29,6 +29,6 @@ $(( RANDOM % 6 + 1)),$(( RANDOM % 6 + 1)),$(( RANDOM % 6 + 1)),$(( RANDOM % 6 + 
 echo "rolling one 20 sided die"
 echo "
 rolling......
-$((RANDOM % 12 + 1))  Rolled
+$((RANDOM % 20+ 1))  Rolled
 "
 ####################################################################################################
