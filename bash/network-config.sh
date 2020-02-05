@@ -19,9 +19,13 @@ ipadd=$(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/
 lanhostname=$(getent hosts $ipadd | awk '{print $2}')
 extip=$(curl -s icanhazip.com)
 extname=$(getent hosts $extip | awk '{print $2}')
+###############################################################################################################################
 # Task 2: Add variables for the default router's name and IP address.
 #         Add a name for the router's IP address to your /etc/hosts file.
+routeradd=$(ip r | awk '/via /{gsub(/\/.*/,"");print $3}')
+routername=$(getent hosts $routeradd | awk '{print $2}')
 #         The router's name and address must be obtained by dynamically
+
 #         finding the router IP address from the route table, and looking
 #         up the router's hostname using its IP address, not by just
 #         printing out literal text.
@@ -36,11 +40,13 @@ extname=$(getent hosts $extip | awk '{print $2}')
 # this command is ugly done this way, so generating the output data into variables is recommended to make the script more readable.
 # e.g.
 #   interface_name=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
-
+####################################################################################################################################
 cat <<EOF
 Hostname        : $hostname
 LAN Address     : $ipadd
 LAN Hostname    : $lanhostname
 External IP     : $extip
 External Name   : $extname
+Router Address  : $routeradd
+Router Hostname : $routername
 EOF
