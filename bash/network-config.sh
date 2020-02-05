@@ -14,7 +14,11 @@
 #         in the output section at the end of the script. If the commands included in this script
 #         don't make sense to you, feel free to create your own commands to find your ip addresses,
 #         host names, etc.
-
+hostname=$(hostname)
+ipadd=$(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')
+lanhostname=$(getent hosts $ipadd | awk '{print $2}')
+extip=$(curl -s icanhazip.com)
+extname=$(getent hosts $extip | awk '{print $2}')
 # Task 2: Add variables for the default router's name and IP address.
 #         Add a name for the router's IP address to your /etc/hosts file.
 #         The router's name and address must be obtained by dynamically
@@ -34,9 +38,9 @@
 #   interface_name=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
 
 cat <<EOF
-Hostname        : $(hostname)
-LAN Address     : $(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')
-LAN Hostname    : $(getent hosts $(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')| awk '{print $2}')
-External IP     : $(curl -s icanhazip.com)
-External Name   : $(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
+Hostname        : $hostname
+LAN Address     : $ipadd
+LAN Hostname    : $lanhostname
+External IP     : $extip
+External Name   : $extname
 EOF
