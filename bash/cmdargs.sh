@@ -19,7 +19,29 @@ while [ $# -gt 0 ]; do
 #          If the debug optionis recognized, set a variable with the debug level from the number given after the -d on the command line
 #             display an error if the user gave the -d option without a single digit number after it
 #          Anything that wasn't recognized on the command line should still go into the myargs array
-
+case $1 in
+	-h )
+    echo 'You entred "-h" for help.'
+    ;;
+    -v )
+    echo 'You entred"-v" for varbose.'
+    ;;
+    -d )
+	case "$2" in
+		[1-5] )
+		echo "You entred -d for debug level $2."
+		shift
+		;;
+    *)
+        echo "The -d option must be followed with a number [1-5]. "
+        shift
+	esac
+    ;;
+    *)
+    errors=$1
+    echo "Error: invalid value $errors"
+    ;;
+    esac
   # each time through the loop, shift the arguments left
   # this decrements the argument count for us
   shift
