@@ -7,12 +7,14 @@
 #       the count. If the script receives a QUIT signal, tell the user they found the secret
 #       to getting out of the script and exit immediately.
 
+
 #### Variables
 programName="$0" # used by error_functions.sh
 sleepTime=1 # delay used by sleeptime
 numberOfSleeps=10 # how many sleeps to wait for before quitting for inactivity
 
 #### Functions
+
 
 # This function will send an error message to stderr
 # Usage:
@@ -50,10 +52,28 @@ while [ $sleepCount -gt 0 ]; do
 done
 }
 
+
+#######################
+#traps
+function end {
+  sleepCount=0
+  echo "You have found your way out of the program!"
+  exit
+}
+
+function reset {
+sleepCount=$numberOfSleeps
+echo "you are not allowed to interrupt"
+}
+######################
+
+trap reset INT
+trap end QUIT
+
+
+
+
 #### Main Program
-#trap sleepCount=$numberOfSleeps INT
-#trap sleepCount=0 QUIT
-echo "you are not allowed to intrupt"
 
 # Process command line parameters
 while [ $# -gt 0 ]; do
@@ -87,9 +107,9 @@ fi
 
 sleepCount=$numberOfSleeps
 
-False
+false
 while [ $? -ne 0 ]; do
-doCountdown|dialog --gauge "Remaining Time" 7 60
+  doCountdown|dialog --gauge "Remaining Time" 7 60
 done
 stty sane
 
