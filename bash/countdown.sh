@@ -57,7 +57,7 @@ done
 #traps
 function end {
   sleepCount=0
-  echo "You have found your way out of the program!"
+  echo "You have found the secret key"
   exit
 }
 
